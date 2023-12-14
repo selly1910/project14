@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project14/controller/auth/register_screen_controller.dart';
@@ -5,7 +7,6 @@ import 'package:project14/utils/validator.dart';
 import 'package:project14/widgets/custom/custom_text_fields.dart';
 
 import '../../widgets/custom/elevated_button.dart';
-import '../splash_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -30,6 +31,7 @@ class RegisterScreen extends StatelessWidget {
               height: 20,
             ),
             Form(
+              key: c.formKey,
               //key: keys,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -37,8 +39,8 @@ class RegisterScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextField(
-                       // controller: nameController,
-                        validator: Validators.checkEmailField,
+                        controller: c.nameController,
+                        validator: Validators.checkFieldEmpty,
                         hint: "Name",
                         textInputAction: TextInputAction.done,
                         textInputType: TextInputType.name),
@@ -46,7 +48,7 @@ class RegisterScreen extends StatelessWidget {
                       height: 20,
                     ),
                     CustomTextField(
-                        // controller: ,
+                        controller: c.emailController,
                         validator: Validators.checkEmailField,
                         hint: "Email",
                         textInputAction: TextInputAction.done,
@@ -55,8 +57,8 @@ class RegisterScreen extends StatelessWidget {
                       height: 20,
                     ),
                     CustomTextField(
-                        // controller: emailController,
-                        validator: Validators.checkEmailField,
+                        controller: c.phoneNumberController,
+                        validator: Validators.checkPhoneField,
                         hint: "Phone Number",
                         textInputAction: TextInputAction.done,
                         textInputType: TextInputType.name),
@@ -64,8 +66,8 @@ class RegisterScreen extends StatelessWidget {
                       height: 20,
                     ),
                     CustomTextField(
-                        // controller: emailController,
-                        validator: Validators.checkEmailField,
+                        controller: c.passwordController,
+                        validator: Validators.checkFieldEmpty,
                         hint: "Password",
                         textInputAction: TextInputAction.done,
                         textInputType: TextInputType.name),
@@ -79,9 +81,7 @@ class RegisterScreen extends StatelessWidget {
             CustomElevatedButton(
               title: "Register",
               onTap: () {
-                // if (keys.currentState!.validate()) {
-                //   Get.offAll(SplashScreen());
-                // }
+               c.onSubmit();
               },
             ),
           ],

@@ -1,14 +1,22 @@
-import 'dart:developer';
+import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:project14/controller/core_controller.dart';
 import 'package:project14/views/auth/login_screen.dart';
-
+import 'package:project14/views/dashboard/dash_screen.dart';
 
 class SplashScreenController extends GetxController {
+  final c = Get.put(CoreController());
+
   @override
   void onInit() {
-    log("sakjhdkasdas");
-    Future.delayed(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 2), () async {
+      //   if (c.isUserLoggedIn()) {
+      //    Get.offAll(() => DashScreen());
+      //   } else {
+      //  Get.offAll(() => LogInScreen());
+      //   }
+
       Get.offAll(() => LogInScreen());
     });
     super.onInit();

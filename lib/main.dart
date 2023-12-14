@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project14/views/auth/login_screen.dart';
-import 'package:project14/views/dashboard/dash_screen.dart';
-import 'package:project14/views/dashboard/home_screen.dart';
-import 'package:project14/views/dashboard/profile_screen.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:project14/controller/core_controller.dart';
 import 'package:project14/views/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -18,10 +18,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: LogInScreen(),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true),
+      initialBinding: BindingsBuilder(() {
+        Get.put(CoreController());
+      }),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project14/utils/colors.dart';
@@ -8,7 +7,7 @@ class CustomSnackBar {
     Get.snackbar(title ?? "Successful", message ?? "The action was successful!",
         snackPosition: SnackPosition.TOP,
         margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Color.fromARGB(255, 0, 69, 4),
         colorText: Colors.white);
   }
 
